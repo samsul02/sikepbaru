@@ -16,6 +16,8 @@ class AppAsset extends AssetBundle {
         'css/site.css',
         'css/img-hover.css',
         'css/data-pegawai.css',
+	'css/docs.css',
+	'img/bs-docs-masthead-pattern.png',
     ];
     public $js = [
         'js/data-pegawai.js',
