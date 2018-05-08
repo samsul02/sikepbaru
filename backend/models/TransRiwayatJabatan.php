@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modelscurrent;
+namespace backend\models;
 
 use Yii;
 
@@ -37,8 +37,7 @@ use Yii;
  * @property string $FlagDiperbantukandiMA
  * @property string $FlagDiperbantukandiLuar
  * @property string $FlagAssignment
- * @property string $FlagAktif1
- * @property string $FlagAktif2
+ * @property int $FlagAktif 1. Aktif 2. Tambahan 3. Non Aktif
  *
  * @property TransIzinBelajar[] $transIzinBelajar
  * @property TmstPegawai $pegawai
@@ -54,7 +53,7 @@ use Yii;
 class TransRiwayatJabatan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -62,15 +61,15 @@ class TransRiwayatJabatan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdPegawai', 'IdSatker', 'TMTJabatanMulai', 'IdNamaJabatan', 'TMTEselon', 'NomorSK', 'LokasiTASPEN'], 'required'],
-            [['IdPegawai', 'IdPegawaiAtasan', 'IdSatker', 'IdNamaJabatan', 'IdStrukturOrganisasi', 'AngkaKredit', 'IdKPPN'], 'integer'],
+            [['IdPegawai', 'IdSatker', 'TMTJabatanMulai', 'IdNamaJabatan', 'TMTEselon', 'NomorSK', 'LokasiTASPEN', 'FlagAktif'], 'required'],
+            [['IdPegawai', 'IdPegawaiAtasan', 'IdSatker', 'IdNamaJabatan', 'IdStrukturOrganisasi', 'AngkaKredit', 'IdKPPN', 'FlagAktif'], 'integer'],
             [['TMTJabatanMulai', 'TMTJabatanSelesai', 'TMTEselon', 'TanggalSK', 'TanggalPelantikan', 'TanggalSPP', 'TMTSPMT', 'TanggalSPMT'], 'safe'],
-            [['FlagDiperbantukandiMA', 'FlagDiperbantukandiLuar', 'FlagAssignment', 'FlagAktif1', 'FlagAktif2'], 'string'],
+            [['FlagDiperbantukandiMA', 'FlagDiperbantukandiLuar', 'FlagAssignment'], 'string'],
             [['NomorSK', 'PejabatSK', 'LokasiTASPEN', 'DokumenSK', 'NomorSPP', 'PejabatSPP', 'DokumenSPP', 'NomorSPMT', 'PejabatSPMT', 'DokumenSPMT', 'LembagaPenerbitSKFungsional'], 'string', 'max' => 50],
             [['IdPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawai' => 'IdPegawai']],
             [['IdPegawaiAtasan'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawaiAtasan' => 'IdPegawai']],
@@ -82,7 +81,7 @@ class TransRiwayatJabatan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -117,8 +116,7 @@ class TransRiwayatJabatan extends \yii\db\ActiveRecord
             'FlagDiperbantukandiMA' => 'Flag Diperbantukandi Ma',
             'FlagDiperbantukandiLuar' => 'Flag Diperbantukandi Luar',
             'FlagAssignment' => 'Flag Assignment',
-            'FlagAktif1' => 'Flag Aktif1',
-            'FlagAktif2' => 'Flag Aktif2',
+            'FlagAktif' => 'Flag Aktif',
         ];
     }
 

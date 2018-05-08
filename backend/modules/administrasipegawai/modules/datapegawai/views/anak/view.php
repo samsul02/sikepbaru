@@ -28,7 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             //'IdAnggotaKeluarga',
             //'IDPegawai',
-            'JenisHubunganKeluarga',
+            
+			 [
+                'attribute' => 'JenisHubunganKeluarga',
+                'value' =>$model->jenisHubunganKeluarga->JenisHubunganKeluarga 
+            ],
             'JenisKelamin',
             'NamaAnggotaKeluarga',
             'TempatLahirAnggotaKeluarga',
@@ -37,16 +41,39 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'TanggalLahirAnggotaKeluarga',
                 'value' => (($model->TanggalLahirAnggotaKeluarga != '0000-00-00' && $model->TanggalLahirAnggotaKeluarga != '0001-11-30') ? Yii::$app->formatter->asDate($model->TanggalLahirAnggotaKeluarga, 'php:d F Y') : '-'),
             ],
-            'PekerjaanAnggotaKeluarga',
+            
+			[
+                'attribute' => 'PekerjaanAnggotaKeluarga',
+                'value' =>$model->pekerjaanAnggotaKeluarga->NamaPekerjaan 
+            ],
             'AlamatKantorAnggotaKeluarga',
             'NoIndukPegawaiKeluarga',
-            'Agama',
-            'StatusPerkawinan',
+            
+			[
+                'attribute' => 'Agama',
+                'value' =>$model->agama->NamaAgama 
+            ],
+            
+			[
+                'attribute' => 'StatusPerkawinan',
+                'value' =>$model->statusPerkawinan->NamaStatusKawin 
+            ],
             'TanggalNikah',
             'StatusKesehatan',
-            'PendidikanTerakhir',
-            'IsHidup',
-            'BerhakTunjangan',
+            
+			[
+                'attribute' => 'PendidikanTerakhir',
+                'value' =>$model->pendidikanTerakhir->DeskripsiTingkatPendidikan 
+            ],
+            [
+                'attribute' => 'IsHidup',
+				'value' =>$model->IsHidup=='Y'?'YA':'TIDAK' 
+            ],
+			[
+                'attribute' => 'BerhakTunjangan',
+				'value' =>$model->BerhakTunjangan=='Y'?'YA':'TIDAK' 
+            ],
+			
             'DokumenHubunganKeluarga',
             [
                 'attribute' => 'DokumenHubunganKeluarga',

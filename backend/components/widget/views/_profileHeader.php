@@ -24,7 +24,8 @@ use backend\components\SikepHelper;
         </div>
         <div class="col-sm-6">
             <p class="header-pegawai-name"><?= $model->GelarDepan . ' ' . $model->NamaLengkap . ' ' . $model->GelarBelakang; ?></p>
-            <span><?= (!empty($model->jabatan) ? $model->jabatan->KeteranganNamaJabatan : '-') . ', ' . (isset($model->transRiwayatJabatan) ? $model->transRiwayatJabatan->satker->NamaSatker : '-') ?></span><br/>
+            <?php SikepHelper::cs('transRiwayatJabatan', $model->transRiwayatJabatan); ?>
+            <span><?= (!empty($model->jabatan) ? $model->jabatan->KeteranganNamaJabatan : '-') . ', ' . (!empty($model->transRiwayatJabatan && !empty($model->transRiwayatJabatan->satker)) ? $model->transRiwayatJabatan->satker->NamaSatker : '-') ?></span><br/>
             <span><?= !empty($model->kodeGolonganRuang) ? ($model->kodeGolonganRuang->NamaGolongan . ' (' . $model->kodeGolonganRuang->Golongan . '/' . $model->kodeGolonganRuang->Ruang . ')') : '-' ?></span><br/><br/>
             <span><?= $model->NIPBaru . ' / ' . $model->NIPLama ?></span><br/>
             <span><?= (!empty($model->kabupatenTempatLahir) ? $model->kabupatenTempatLahir->NamaKabupaten : '-') . ', ' . (($model->TanggalLahir != '0000-00-00' && $model->TanggalLahir != '0001-11-30') ? Yii::$app->formatter->asDate($model->TanggalLahir, 'php:d F Y') : '-') ?></span>

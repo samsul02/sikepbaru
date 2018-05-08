@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modelscurrent;
+namespace backend\models;
 
 use Yii;
 

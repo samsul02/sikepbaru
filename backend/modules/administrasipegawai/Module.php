@@ -24,6 +24,12 @@ class Module extends \yii\base\Module {
                 'class' => 'backend\modules\administrasipegawai\modules\datapegawai\Module',
             //'defaultRoute' => 'pegawai/index'
             ],
+			'jabatanfungsional' => [
+            'class' => 'backend\modules\administrasipegawai\modules\jabatanfungsional\Module',
+			],
+			'pengembanganpegawai' => [
+            'class' => 'backend\modules\administrasipegawai\modules\pengembanganpegawai\Module',
+			],
         ];
     }
 
