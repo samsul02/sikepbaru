@@ -18,12 +18,11 @@ use Yii;
  * @property int $KotaKegiatanDiklat
  *
  * @property TrefNegara $negaraKegiatanDiklat
- * @property TrefKabupaten $kotaKegiatanDiklat
  */
 class TransKegiatanDiklat extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -31,7 +30,7 @@ class TransKegiatanDiklat extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -41,12 +40,11 @@ class TransKegiatanDiklat extends \yii\db\ActiveRecord
             [['JadwalDiklat'], 'safe'],
             [['NamaKegiatanDiklat', 'PenyelenggaraDiklat', 'LokasiKegiatanDiklat'], 'string', 'max' => 100],
             [['NegaraKegiatanDiklat'], 'exist', 'skipOnError' => true, 'targetClass' => TrefNegara::className(), 'targetAttribute' => ['NegaraKegiatanDiklat' => 'IdNegara']],
-            [['KotaKegiatanDiklat'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKabupaten::className(), 'targetAttribute' => ['KotaKegiatanDiklat' => 'IdKabupaten']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -69,13 +67,5 @@ class TransKegiatanDiklat extends \yii\db\ActiveRecord
     public function getNegaraKegiatanDiklat()
     {
         return $this->hasOne(TrefNegara::className(), ['IdNegara' => 'NegaraKegiatanDiklat']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKotaKegiatanDiklat()
-    {
-        return $this->hasOne(TrefKabupaten::className(), ['IdKabupaten' => 'KotaKegiatanDiklat']);
     }
 }

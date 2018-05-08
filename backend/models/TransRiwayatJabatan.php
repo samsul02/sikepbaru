@@ -76,7 +76,7 @@ class TransRiwayatJabatan extends \yii\db\ActiveRecord
             [['IdSatker'], 'exist', 'skipOnError' => true, 'targetClass' => TmstSatker::className(), 'targetAttribute' => ['IdSatker' => 'IdSatker']],
             [['IdNamaJabatan'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJabatan::className(), 'targetAttribute' => ['IdNamaJabatan' => 'IdNamaJabatan']],
             [['IdKPPN'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKppn::className(), 'targetAttribute' => ['IdKPPN' => 'IdKPPN']],
-            [['IdStrukturOrganisasi'], 'exist', 'skipOnError' => true, 'targetClass' => TmstStrukturOrganisasi::className(), 'targetAttribute' => ['IdStrukturOrganisasi' => 'IdRefStrukturOrgansasi']],
+            [['IdStrukturOrganisasi'], 'exist', 'skipOnError' => true, 'targetClass' => TmstStrukturOrganisasi::className(), 'targetAttribute' => ['IdStrukturOrganisasi' => 'IdRefStrukturOrganisasi']],
         ];
     }
 
@@ -173,7 +173,7 @@ class TransRiwayatJabatan extends \yii\db\ActiveRecord
      */
     public function getStrukturOrganisasi()
     {
-        return $this->hasOne(TmstStrukturOrganisasi::className(), ['IdRefStrukturOrgansasi' => 'IdStrukturOrganisasi']);
+        return $this->hasOne(TmstStrukturOrganisasi::className(), ['IdRefStrukturOrganisasi' => 'IdStrukturOrganisasi']);
     }
 
     /**

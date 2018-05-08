@@ -16,7 +16,7 @@ use Yii;
 class TrefFungsionalAlasan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,20 +24,20 @@ class TrefFungsionalAlasan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['IdRefFungsionalStatus', 'NamaRefFungsionalAlasan'], 'required'],
             [['IdRefFungsionalStatus'], 'integer'],
-            [['NamaRefFungsionalAlasan'], 'string', 'max' => 30],
+            [['NamaRefFungsionalAlasan'], 'string', 'max' => 35],
             [['IdRefFungsionalStatus'], 'exist', 'skipOnError' => true, 'targetClass' => TrefFungsionalStatus::className(), 'targetAttribute' => ['IdRefFungsionalStatus' => 'IdRefFungsionalStatus']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

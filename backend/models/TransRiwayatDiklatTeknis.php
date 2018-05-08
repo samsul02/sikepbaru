@@ -25,7 +25,7 @@ use Yii;
 class TransRiwayatDiklatTeknis extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -33,7 +33,7 @@ class TransRiwayatDiklatTeknis extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -50,7 +50,7 @@ class TransRiwayatDiklatTeknis extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

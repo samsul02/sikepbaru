@@ -24,7 +24,7 @@ use Yii;
 class TransPeninjauanMasaKerja extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -32,7 +32,7 @@ class TransPeninjauanMasaKerja extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -47,7 +47,7 @@ class TransPeninjauanMasaKerja extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

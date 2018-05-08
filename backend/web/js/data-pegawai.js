@@ -3,9 +3,12 @@ $(function () {
         var idKabupaten = $(this).val();
 
         $.get('get-propinsi', {idKabupaten: idKabupaten}, function (data) {
+            
+            console.log(data);
+            
             var data = $.parseJSON(data);
-            $('#dropdown-propinsi').val(data.IdPropinsi);
-            $('#hidden-propinsi').val(data.IdPropinsi);
+            $('#dropdown-propinsi').val(data);
+            $('#hidden-propinsi').val(data);
         });
     });
 

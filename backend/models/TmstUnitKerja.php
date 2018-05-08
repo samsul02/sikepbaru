@@ -8,15 +8,9 @@ use Yii;
  * This is the model class for table "tmst_unit_kerja".
  *
  * @property int $IdUnitKerja
- * @property int $IdParentUnitKerja
- * @property int $LevelUnitKerja
- * @property int $KodeUnitKerja
  * @property string $NamaUnitKerja
- * @property int $UrutanUnitKerja
  *
  * @property TmstStrukturOrganisasi[] $tmstStrukturOrganisasi
- * @property TmstUnitKerja $parentUnitKerja
- * @property TmstUnitKerja[] $tmstUnitKerja
  * @property TransBudgetingUnit[] $transBudgetingUnit
  * @property TransFormasiPegawaiDetail[] $transFormasiPegawaiDetail
  * @property TransIzinBelajar[] $transIzinBelajar
@@ -30,7 +24,7 @@ use Yii;
 class TmstUnitKerja extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -38,30 +32,23 @@ class TmstUnitKerja extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdParentUnitKerja', 'LevelUnitKerja', 'KodeUnitKerja'], 'required'],
-            [['IdParentUnitKerja', 'LevelUnitKerja', 'KodeUnitKerja', 'UrutanUnitKerja'], 'integer'],
-            [['NamaUnitKerja'], 'string', 'max' => 50],
-            [['IdParentUnitKerja'], 'exist', 'skipOnError' => true, 'targetClass' => TmstUnitKerja::className(), 'targetAttribute' => ['IdParentUnitKerja' => 'IdUnitKerja']],
+            [['NamaUnitKerja'], 'string', 'max' => 100],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'IdUnitKerja' => 'Id Unit Kerja',
-            'IdParentUnitKerja' => 'Id Parent Unit Kerja',
-            'LevelUnitKerja' => 'Level Unit Kerja',
-            'KodeUnitKerja' => 'Kode Unit Kerja',
             'NamaUnitKerja' => 'Nama Unit Kerja',
-            'UrutanUnitKerja' => 'Urutan Unit Kerja',
         ];
     }
 
@@ -71,22 +58,6 @@ class TmstUnitKerja extends \yii\db\ActiveRecord
     public function getTmstStrukturOrganisasi()
     {
         return $this->hasMany(TmstStrukturOrganisasi::className(), ['IdUnitKerja' => 'IdUnitKerja']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParentUnitKerja()
-    {
-        return $this->hasOne(TmstUnitKerja::className(), ['IdUnitKerja' => 'IdParentUnitKerja']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstUnitKerja()
-    {
-        return $this->hasMany(TmstUnitKerja::className(), ['IdParentUnitKerja' => 'IdUnitKerja']);
     }
 
     /**

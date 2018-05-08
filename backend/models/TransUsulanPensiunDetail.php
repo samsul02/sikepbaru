@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $IdUsulanPensiun
  * @property int $IdPegawai
- * @property int $IdJabatanPegawi
+ * @property int $IdJabatanPegawai
  * @property int $IdUnitKerjaPegawai
  * @property string $DokumenSKPensiun
  * @property string $NomorSKPensiun
@@ -22,7 +22,7 @@ use Yii;
  * @property string $TanggalPerpeg
  *
  * @property TmstPegawai $pegawai
- * @property TrefJabatan $jabatanPegawi
+ * @property TrefJabatan $jabatanPegawai
  * @property TmstUnitKerja $unitKerjaPegawai
  * @property TmstPegawai $pejabatPembuatSKPensiun
  * @property TrefAlasanPensiun $alasanPensiun
@@ -30,7 +30,7 @@ use Yii;
 class TransUsulanPensiunDetail extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -38,18 +38,18 @@ class TransUsulanPensiunDetail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdPegawai', 'IdJabatanPegawi', 'IdUnitKerjaPegawai', 'AlasanPensiun', 'NoPerpeg', 'TanggalPerpeg'], 'required'],
-            [['IdPegawai', 'IdJabatanPegawi', 'IdUnitKerjaPegawai', 'PejabatPembuatSKPensiun', 'AlasanPensiun'], 'integer'],
+            [['IdPegawai', 'IdJabatanPegawai', 'IdUnitKerjaPegawai', 'AlasanPensiun', 'NoPerpeg', 'TanggalPerpeg'], 'required'],
+            [['IdPegawai', 'IdJabatanPegawai', 'IdUnitKerjaPegawai', 'PejabatPembuatSKPensiun', 'AlasanPensiun'], 'integer'],
             [['TanggalSKPensiun', 'TMTPensiun', 'TanggalPerpeg'], 'safe'],
             [['CatatanAlasanPensiun'], 'string'],
             [['DokumenSKPensiun', 'NomorSKPensiun', 'NoPerpeg'], 'string', 'max' => 50],
             [['IdPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawai' => 'IdPegawai']],
-            [['IdJabatanPegawi'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJabatan::className(), 'targetAttribute' => ['IdJabatanPegawi' => 'IdNamaJabatan']],
+            [['IdJabatanPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJabatan::className(), 'targetAttribute' => ['IdJabatanPegawai' => 'IdNamaJabatan']],
             [['IdUnitKerjaPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstUnitKerja::className(), 'targetAttribute' => ['IdUnitKerjaPegawai' => 'IdUnitKerja']],
             [['PejabatPembuatSKPensiun'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['PejabatPembuatSKPensiun' => 'IdPegawai']],
             [['AlasanPensiun'], 'exist', 'skipOnError' => true, 'targetClass' => TrefAlasanPensiun::className(), 'targetAttribute' => ['AlasanPensiun' => 'IdAlasanPensiun']],
@@ -57,14 +57,14 @@ class TransUsulanPensiunDetail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'IdUsulanPensiun' => 'Id Usulan Pensiun',
             'IdPegawai' => 'Id Pegawai',
-            'IdJabatanPegawi' => 'Id Jabatan Pegawi',
+            'IdJabatanPegawai' => 'Id Jabatan Pegawai',
             'IdUnitKerjaPegawai' => 'Id Unit Kerja Pegawai',
             'DokumenSKPensiun' => 'Dokumen Skpensiun',
             'NomorSKPensiun' => 'Nomor Skpensiun',
@@ -89,9 +89,9 @@ class TransUsulanPensiunDetail extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getJabatanPegawi()
+    public function getJabatanPegawai()
     {
-        return $this->hasOne(TrefJabatan::className(), ['IdNamaJabatan' => 'IdJabatanPegawi']);
+        return $this->hasOne(TrefJabatan::className(), ['IdNamaJabatan' => 'IdJabatanPegawai']);
     }
 
     /**

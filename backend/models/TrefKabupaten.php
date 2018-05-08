@@ -9,19 +9,14 @@ use Yii;
  *
  * @property int $IdKabupaten
  * @property string $NamaKabupaten
- * @property string $KodeKabupaten
  * @property int $IdPropinsi
  *
- * @property TmstAlamatPegawai[] $tmstAlamatPegawai
- * @property TmstPegawai[] $tmstPegawai
- * @property TmstSatker[] $tmstSatker
- * @property TransKegiatanDiklat[] $transKegiatanDiklat
- * @property TrefPropinsi $propinsi
+ * @property TrefKecamatan[] $trefKecamatan
  */
 class TrefKabupaten extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -29,28 +24,25 @@ class TrefKabupaten extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['NamaKabupaten', 'KodeKabupaten'], 'required'],
+            [['NamaKabupaten'], 'required'],
             [['IdPropinsi'], 'integer'],
             [['NamaKabupaten'], 'string', 'max' => 50],
-            [['KodeKabupaten'], 'string', 'max' => 4],
-            [['IdPropinsi'], 'exist', 'skipOnError' => true, 'targetClass' => TrefPropinsi::className(), 'targetAttribute' => ['IdPropinsi' => 'IdPropinsi']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'IdKabupaten' => 'Id Kabupaten',
             'NamaKabupaten' => 'Nama Kabupaten',
-            'KodeKabupaten' => 'Kode Kabupaten',
             'IdPropinsi' => 'Id Propinsi',
         ];
     }
@@ -58,40 +50,8 @@ class TrefKabupaten extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTmstAlamatPegawai()
+    public function getTrefKecamatan()
     {
-        return $this->hasMany(TmstAlamatPegawai::className(), ['KodeKabupatenTempatTinggal' => 'IdKabupaten']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstPegawai()
-    {
-        return $this->hasMany(TmstPegawai::className(), ['KabupatenTempatLahir' => 'IdKabupaten']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstSatker()
-    {
-        return $this->hasMany(TmstSatker::className(), ['IdKabupatenSatker' => 'IdKabupaten']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTransKegiatanDiklat()
-    {
-        return $this->hasMany(TransKegiatanDiklat::className(), ['KotaKegiatanDiklat' => 'IdKabupaten']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPropinsi()
-    {
-        return $this->hasOne(TrefPropinsi::className(), ['IdPropinsi' => 'IdPropinsi']);
+        return $this->hasMany(TrefKecamatan::className(), ['IdKabupaten' => 'IdKabupaten']);
     }
 }

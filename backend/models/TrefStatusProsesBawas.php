@@ -15,7 +15,7 @@ use Yii;
 class TrefStatusProsesBawas extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -23,18 +23,18 @@ class TrefStatusProsesBawas extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['StatusProsesBawas'], 'required'],
-            [['StatusProsesBawas'], 'string', 'max' => 20],
+            [['StatusProsesBawas'], 'string', 'max' => 50],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

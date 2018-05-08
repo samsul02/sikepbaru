@@ -22,7 +22,7 @@ use Yii;
 class TransAuditTrail extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -30,23 +30,22 @@ class TransAuditTrail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['IdTable', 'Atribut', 'IdUser', 'NewValue', 'Deleted'], 'required'],
-            [['IdTable', 'IdRow', 'IdUser'], 'integer'],
+            [['IdTable', 'IdRow', 'IdUser', 'Deleted'], 'integer'],
             [['Timestamp'], 'safe'],
             [['Atribut', 'NewValue'], 'string', 'max' => 200],
-            [['Deleted'], 'string', 'max' => 1],
             [['IdUser'], 'exist', 'skipOnError' => true, 'targetClass' => TmstUser::className(), 'targetAttribute' => ['IdUser' => 'IdUser']],
             [['IdTable'], 'exist', 'skipOnError' => true, 'targetClass' => TrefNamaTable::className(), 'targetAttribute' => ['IdTable' => 'idTable']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

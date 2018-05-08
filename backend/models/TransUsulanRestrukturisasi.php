@@ -18,7 +18,7 @@ use Yii;
 class TransUsulanRestrukturisasi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -26,7 +26,7 @@ class TransUsulanRestrukturisasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -41,7 +41,7 @@ class TransUsulanRestrukturisasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

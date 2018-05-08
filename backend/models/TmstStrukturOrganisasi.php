@@ -7,12 +7,12 @@ use Yii;
 /**
  * This is the model class for table "tmst_struktur_organisasi".
  *
- * @property int $IdRefStrukturOrgansasi
+ * @property int $IdRefStrukturOrganisasi
  * @property int $IdParentStrukturOrganisasi
+ * @property string $KodeStrukturOrganisasi
  * @property int $LevelStrukturOrganisasi
  * @property int $LokasiStrukturOrganisasi
- * @property int $KodeJenisSatkerStrukturOrganisasi
- * @property int $IdKelasStrukturOrganisasi
+ * @property int $IdSatker
  * @property string $KodeJabatanOld
  * @property int $IdNamaJabatan
  * @property int $IdUnitKerja
@@ -22,14 +22,14 @@ use Yii;
  * @property TmstListJabatanOrganisasi[] $tmstListJabatanOrganisasi
  * @property TmstUnitKerja $unitKerja
  * @property TrefJabatan $namaJabatan
- * @property TrefJenisSatker $kodeJenisSatkerStrukturOrganisasi
  * @property TrefLokasi $lokasiStrukturOrganisasi
+ * @property TmstSatker $satker
  * @property TransRiwayatJabatan[] $transRiwayatJabatan
  */
 class TmstStrukturOrganisasi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -37,33 +37,34 @@ class TmstStrukturOrganisasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdParentStrukturOrganisasi', 'LevelStrukturOrganisasi', 'LokasiStrukturOrganisasi', 'KodeJenisSatkerStrukturOrganisasi', 'IdKelasStrukturOrganisasi', 'IdNamaJabatan', 'IdUnitKerja', 'IdTugasPokok', 'IdGajiTunjangan'], 'integer'],
-            [['IdNamaJabatan', 'IdUnitKerja', 'IdGajiTunjangan'], 'required'],
+            [['IdParentStrukturOrganisasi', 'LevelStrukturOrganisasi', 'LokasiStrukturOrganisasi', 'IdSatker', 'IdNamaJabatan', 'IdUnitKerja', 'IdTugasPokok', 'IdGajiTunjangan'], 'integer'],
+            [['KodeStrukturOrganisasi', 'IdNamaJabatan', 'IdUnitKerja', 'IdGajiTunjangan'], 'required'],
+            [['KodeStrukturOrganisasi'], 'string', 'max' => 15],
             [['KodeJabatanOld'], 'string', 'max' => 4],
             [['IdUnitKerja'], 'exist', 'skipOnError' => true, 'targetClass' => TmstUnitKerja::className(), 'targetAttribute' => ['IdUnitKerja' => 'IdUnitKerja']],
             [['IdNamaJabatan'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJabatan::className(), 'targetAttribute' => ['IdNamaJabatan' => 'IdNamaJabatan']],
-            [['KodeJenisSatkerStrukturOrganisasi'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJenisSatker::className(), 'targetAttribute' => ['KodeJenisSatkerStrukturOrganisasi' => 'IdJenisSatker']],
             [['LokasiStrukturOrganisasi'], 'exist', 'skipOnError' => true, 'targetClass' => TrefLokasi::className(), 'targetAttribute' => ['LokasiStrukturOrganisasi' => 'IdLokasi']],
+            [['IdSatker'], 'exist', 'skipOnError' => true, 'targetClass' => TmstSatker::className(), 'targetAttribute' => ['IdSatker' => 'IdSatker']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'IdRefStrukturOrgansasi' => 'Id Ref Struktur Organsasi',
+            'IdRefStrukturOrganisasi' => 'Id Ref Struktur Organisasi',
             'IdParentStrukturOrganisasi' => 'Id Parent Struktur Organisasi',
+            'KodeStrukturOrganisasi' => 'Kode Struktur Organisasi',
             'LevelStrukturOrganisasi' => 'Level Struktur Organisasi',
             'LokasiStrukturOrganisasi' => 'Lokasi Struktur Organisasi',
-            'KodeJenisSatkerStrukturOrganisasi' => 'Kode Jenis Satker Struktur Organisasi',
-            'IdKelasStrukturOrganisasi' => 'Id Kelas Struktur Organisasi',
+            'IdSatker' => 'Id Satker',
             'KodeJabatanOld' => 'Kode Jabatan Old',
             'IdNamaJabatan' => 'Id Nama Jabatan',
             'IdUnitKerja' => 'Id Unit Kerja',
@@ -77,7 +78,7 @@ class TmstStrukturOrganisasi extends \yii\db\ActiveRecord
      */
     public function getTmstListJabatanOrganisasi()
     {
-        return $this->hasMany(TmstListJabatanOrganisasi::className(), ['IdStrukturOrganisasi' => 'IdRefStrukturOrgansasi']);
+        return $this->hasMany(TmstListJabatanOrganisasi::className(), ['IdStrukturOrganisasi' => 'IdRefStrukturOrganisasi']);
     }
 
     /**
@@ -99,14 +100,6 @@ class TmstStrukturOrganisasi extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getKodeJenisSatkerStrukturOrganisasi()
-    {
-        return $this->hasOne(TrefJenisSatker::className(), ['IdJenisSatker' => 'KodeJenisSatkerStrukturOrganisasi']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getLokasiStrukturOrganisasi()
     {
         return $this->hasOne(TrefLokasi::className(), ['IdLokasi' => 'LokasiStrukturOrganisasi']);
@@ -115,8 +108,16 @@ class TmstStrukturOrganisasi extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getSatker()
+    {
+        return $this->hasOne(TmstSatker::className(), ['IdSatker' => 'IdSatker']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getTransRiwayatJabatan()
     {
-        return $this->hasMany(TransRiwayatJabatan::className(), ['IdStrukturOrganisasi' => 'IdRefStrukturOrgansasi']);
+        return $this->hasMany(TransRiwayatJabatan::className(), ['IdStrukturOrganisasi' => 'IdRefStrukturOrganisasi']);
     }
 }

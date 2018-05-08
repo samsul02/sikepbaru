@@ -30,7 +30,7 @@ use Yii;
 class TransRiwayatPendidikan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -38,7 +38,7 @@ class TransRiwayatPendidikan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -59,7 +59,7 @@ class TransRiwayatPendidikan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

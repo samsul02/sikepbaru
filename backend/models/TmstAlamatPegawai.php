@@ -21,14 +21,11 @@ use Yii;
  *
  * @property TmstPegawai $pegawai
  * @property TrefJenisAlamat $jenisAlamat
- * @property TrefKabupaten $kodeKabupatenTempatTinggal
- * @property TrefKecamatan $kodeKecamatan
- * @property TrefPropinsi $kodePropinsiTempatTinggal
  */
 class TmstAlamatPegawai extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -36,7 +33,7 @@ class TmstAlamatPegawai extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -46,16 +43,13 @@ class TmstAlamatPegawai extends \yii\db\ActiveRecord
             [['FlagHomeBase'], 'string'],
             [['AlamatTempatTinggal', 'KelurahanTempatTinggal', 'StatusKepemilikanTempatTinggal'], 'string', 'max' => 100],
             [['NomorTeleponAlamat'], 'string', 'max' => 50],
-            [['IdPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawai' => 'IDPegawai']],
+            [['IdPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawai' => 'IdPegawai']],
             [['JenisAlamat'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJenisAlamat::className(), 'targetAttribute' => ['JenisAlamat' => 'IdJenisAlamat']],
-            [['KodeKabupatenTempatTinggal'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKabupaten::className(), 'targetAttribute' => ['KodeKabupatenTempatTinggal' => 'IdKabupaten']],
-            [['KodeKecamatan'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKecamatan::className(), 'targetAttribute' => ['KodeKecamatan' => 'IdKecamatan']],
-            [['KodePropinsiTempatTinggal'], 'exist', 'skipOnError' => true, 'targetClass' => TrefPropinsi::className(), 'targetAttribute' => ['KodePropinsiTempatTinggal' => 'IdPropinsi']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -79,7 +73,7 @@ class TmstAlamatPegawai extends \yii\db\ActiveRecord
      */
     public function getPegawai()
     {
-        return $this->hasOne(TmstPegawai::className(), ['IDPegawai' => 'IdPegawai']);
+        return $this->hasOne(TmstPegawai::className(), ['IdPegawai' => 'IdPegawai']);
     }
 
     /**
@@ -88,29 +82,5 @@ class TmstAlamatPegawai extends \yii\db\ActiveRecord
     public function getJenisAlamat()
     {
         return $this->hasOne(TrefJenisAlamat::className(), ['IdJenisAlamat' => 'JenisAlamat']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKodeKabupatenTempatTinggal()
-    {
-        return $this->hasOne(TrefKabupaten::className(), ['IdKabupaten' => 'KodeKabupatenTempatTinggal']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKodeKecamatan()
-    {
-        return $this->hasOne(TrefKecamatan::className(), ['IdKecamatan' => 'KodeKecamatan']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKodePropinsiTempatTinggal()
-    {
-        return $this->hasOne(TrefPropinsi::className(), ['IdPropinsi' => 'KodePropinsiTempatTinggal']);
     }
 }

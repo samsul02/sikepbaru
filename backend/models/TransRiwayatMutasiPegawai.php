@@ -30,7 +30,7 @@ use Yii;
 class TransRiwayatMutasiPegawai extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -38,7 +38,7 @@ class TransRiwayatMutasiPegawai extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -57,7 +57,7 @@ class TransRiwayatMutasiPegawai extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

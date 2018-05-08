@@ -12,11 +12,12 @@ use Yii;
  * @property string $TingkatHukumanDisiplin
  *
  * @property TransRiwayatSanksi[] $transRiwayatSanksi
+ * @property TransRiwayatSanksi[] $transRiwayatSanksi0
  */
 class TrefHukumanDisiplin extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,7 +25,7 @@ class TrefHukumanDisiplin extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -34,7 +35,7 @@ class TrefHukumanDisiplin extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -51,5 +52,13 @@ class TrefHukumanDisiplin extends \yii\db\ActiveRecord
     public function getTransRiwayatSanksi()
     {
         return $this->hasMany(TransRiwayatSanksi::className(), ['IdJenisHukumanDisiplin' => 'IdHukumanDisiplin']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTransRiwayatSanksi0()
+    {
+        return $this->hasMany(TransRiwayatSanksi::className(), ['IdJenisHukumanDisiplinBanding' => 'IdHukumanDisiplin']);
     }
 }

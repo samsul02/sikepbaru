@@ -26,7 +26,7 @@ use Yii;
 class TransUsulanTpmPnppjsDetail extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -34,7 +34,7 @@ class TransUsulanTpmPnppjsDetail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -51,7 +51,7 @@ class TransUsulanTpmPnppjsDetail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

@@ -19,7 +19,7 @@ use Yii;
 class TmstListJabatanOrganisasi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -27,20 +27,20 @@ class TmstListJabatanOrganisasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdStrukturOrganisasi', 'IdJabatan', 'ParentJabatanOrganisasi', 'LevelJabatanOrganisasi'], 'required'],
+            [['IdStrukturOrganisasi', 'IdJabatan', 'LevelJabatanOrganisasi'], 'required'],
             [['IdStrukturOrganisasi', 'IdJabatan', 'ParentJabatanOrganisasi', 'LevelJabatanOrganisasi'], 'integer'],
-            [['IdStrukturOrganisasi'], 'exist', 'skipOnError' => true, 'targetClass' => TmstStrukturOrganisasi::className(), 'targetAttribute' => ['IdStrukturOrganisasi' => 'IdRefStrukturOrgansasi']],
+            [['IdStrukturOrganisasi'], 'exist', 'skipOnError' => true, 'targetClass' => TmstStrukturOrganisasi::className(), 'targetAttribute' => ['IdStrukturOrganisasi' => 'IdRefStrukturOrganisasi']],
             [['IdJabatan'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJabatan::className(), 'targetAttribute' => ['IdJabatan' => 'IdNamaJabatan']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -58,7 +58,7 @@ class TmstListJabatanOrganisasi extends \yii\db\ActiveRecord
      */
     public function getStrukturOrganisasi()
     {
-        return $this->hasOne(TmstStrukturOrganisasi::className(), ['IdRefStrukturOrgansasi' => 'IdStrukturOrganisasi']);
+        return $this->hasOne(TmstStrukturOrganisasi::className(), ['IdRefStrukturOrganisasi' => 'IdStrukturOrganisasi']);
     }
 
     /**

@@ -16,7 +16,7 @@ use Yii;
 class TrefAgama extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,7 +24,7 @@ class TrefAgama extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -35,13 +35,13 @@ class TrefAgama extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'IdAgama' => 'Id Agama',
-            'NamaAgama' => 'Agama',
+            'NamaAgama' => 'Nama Agama',
         ];
     }
 

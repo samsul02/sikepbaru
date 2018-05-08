@@ -41,7 +41,7 @@ use Yii;
 class TrefJabatan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -49,7 +49,7 @@ class TrefJabatan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -64,7 +64,7 @@ class TrefJabatan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -205,7 +205,7 @@ class TrefJabatan extends \yii\db\ActiveRecord
      */
     public function getTransUsulanPensiunDetail()
     {
-        return $this->hasMany(TransUsulanPensiunDetail::className(), ['IdJabatanPegawi' => 'IdNamaJabatan']);
+        return $this->hasMany(TransUsulanPensiunDetail::className(), ['IdJabatanPegawai' => 'IdNamaJabatan']);
     }
 
     /**

@@ -16,7 +16,7 @@ use Yii;
  * @property int $PejabatPembuatSKPensiun
  * @property int $IdAlasanPensiun
  * @property string $CatatanAlasanPensiun
- * @property int $JenisPensiun
+ * @property int $IdJenisPensiun
  *
  * @property TmstPegawai $pegawai
  * @property TrefAlasanPensiun $alasanPensiun
@@ -25,7 +25,7 @@ use Yii;
 class TransPensiun extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -33,24 +33,24 @@ class TransPensiun extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdPegawai', 'IdAlasanPensiun', 'JenisPensiun'], 'required'],
-            [['IdPegawai', 'PejabatPembuatSKPensiun', 'IdAlasanPensiun', 'JenisPensiun'], 'integer'],
+            [['IdPegawai', 'IdAlasanPensiun', 'IdJenisPensiun'], 'required'],
+            [['IdPegawai', 'PejabatPembuatSKPensiun', 'IdAlasanPensiun', 'IdJenisPensiun'], 'integer'],
             [['TanggalSKPensiun', 'TMTPensiun'], 'safe'],
             [['CatatanAlasanPensiun'], 'string'],
             [['DokumenSKPensiun', 'NomorSKPensiun'], 'string', 'max' => 50],
             [['IdPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawai' => 'IdPegawai']],
             [['IdAlasanPensiun'], 'exist', 'skipOnError' => true, 'targetClass' => TrefAlasanPensiun::className(), 'targetAttribute' => ['IdAlasanPensiun' => 'IdAlasanPensiun']],
-            [['JenisPensiun'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJenisPensiun::className(), 'targetAttribute' => ['JenisPensiun' => 'idJenisPensiun']],
+            [['IdJenisPensiun'], 'exist', 'skipOnError' => true, 'targetClass' => TrefJenisPensiun::className(), 'targetAttribute' => ['IdJenisPensiun' => 'idJenisPensiun']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -64,7 +64,7 @@ class TransPensiun extends \yii\db\ActiveRecord
             'PejabatPembuatSKPensiun' => 'Pejabat Pembuat Skpensiun',
             'IdAlasanPensiun' => 'Id Alasan Pensiun',
             'CatatanAlasanPensiun' => 'Catatan Alasan Pensiun',
-            'JenisPensiun' => 'Jenis Pensiun',
+            'IdJenisPensiun' => 'Id Jenis Pensiun',
         ];
     }
 
@@ -89,6 +89,6 @@ class TransPensiun extends \yii\db\ActiveRecord
      */
     public function getJenisPensiun()
     {
-        return $this->hasOne(TrefJenisPensiun::className(), ['idJenisPensiun' => 'JenisPensiun']);
+        return $this->hasOne(TrefJenisPensiun::className(), ['idJenisPensiun' => 'IdJenisPensiun']);
     }
 }

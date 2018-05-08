@@ -18,7 +18,7 @@ use Yii;
 class TransRiwayatPenugasanOperasiMiliter extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -26,7 +26,7 @@ class TransRiwayatPenugasanOperasiMiliter extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -40,7 +40,7 @@ class TransRiwayatPenugasanOperasiMiliter extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

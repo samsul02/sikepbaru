@@ -8,16 +8,14 @@ use Yii;
  * This is the model class for table "trans_usulan_pensiun".
  *
  * @property int $IdUsulanPensiun
- * @property int $TanggalUsulanPensiun
+ * @property string $TanggalUsulanPensiun
  * @property string $PeriodeUsulanPensiun
  * @property string $StatusUsulanPensiun
- *
- * @property TmstPegawai $tanggalUsulanPensiun
  */
 class TransUsulanPensiun extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -25,20 +23,19 @@ class TransUsulanPensiun extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['TanggalUsulanPensiun', 'PeriodeUsulanPensiun', 'StatusUsulanPensiun'], 'required'],
-            [['TanggalUsulanPensiun'], 'integer'],
+            [['TanggalUsulanPensiun'], 'safe'],
             [['PeriodeUsulanPensiun', 'StatusUsulanPensiun'], 'string', 'max' => 30],
-            [['TanggalUsulanPensiun'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['TanggalUsulanPensiun' => 'IdPegawai']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -48,13 +45,5 @@ class TransUsulanPensiun extends \yii\db\ActiveRecord
             'PeriodeUsulanPensiun' => 'Periode Usulan Pensiun',
             'StatusUsulanPensiun' => 'Status Usulan Pensiun',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTanggalUsulanPensiun()
-    {
-        return $this->hasOne(TmstPegawai::className(), ['IdPegawai' => 'TanggalUsulanPensiun']);
     }
 }

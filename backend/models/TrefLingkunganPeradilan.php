@@ -11,12 +11,11 @@ use Yii;
  * @property string $NamaLingkunganPeradilan
  *
  * @property TmstSatker[] $tmstSatker
- * @property TrefJenisSatker[] $trefJenisSatker
  */
 class TrefLingkunganPeradilan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,7 +23,7 @@ class TrefLingkunganPeradilan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -35,7 +34,7 @@ class TrefLingkunganPeradilan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -51,13 +50,5 @@ class TrefLingkunganPeradilan extends \yii\db\ActiveRecord
     public function getTmstSatker()
     {
         return $this->hasMany(TmstSatker::className(), ['IdBandingLingkunganPeradilan' => 'IdLingkunganPeradilan']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTrefJenisSatker()
-    {
-        return $this->hasMany(TrefJenisSatker::className(), ['IdLingkunganPeradilan' => 'IdLingkunganPeradilan']);
     }
 }

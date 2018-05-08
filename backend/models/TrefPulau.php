@@ -9,14 +9,11 @@ use Yii;
  *
  * @property int $IdPulau
  * @property string $NamaPulau
- *
- * @property TmstSatker[] $tmstSatker
- * @property TrefPropinsi[] $trefPropinsi
  */
 class TrefPulau extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,7 +21,7 @@ class TrefPulau extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -35,7 +32,7 @@ class TrefPulau extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -43,21 +40,5 @@ class TrefPulau extends \yii\db\ActiveRecord
             'IdPulau' => 'Id Pulau',
             'NamaPulau' => 'Nama Pulau',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstSatker()
-    {
-        return $this->hasMany(TmstSatker::className(), ['IdPulauSatker' => 'IdPulau']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTrefPropinsi()
-    {
-        return $this->hasMany(TrefPropinsi::className(), ['IdPulau' => 'IdPulau']);
     }
 }

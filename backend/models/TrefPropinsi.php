@@ -10,17 +10,11 @@ use Yii;
  * @property int $IdPropinsi
  * @property string $NamaPropinsi
  * @property int $IdPulau
- *
- * @property TmstAlamatPegawai[] $tmstAlamatPegawai
- * @property TmstPegawai[] $tmstPegawai
- * @property TmstSatker[] $tmstSatker
- * @property TrefKabupaten[] $trefKabupaten
- * @property TrefPulau $pulau
  */
 class TrefPropinsi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -28,7 +22,7 @@ class TrefPropinsi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -36,12 +30,11 @@ class TrefPropinsi extends \yii\db\ActiveRecord
             [['NamaPropinsi', 'IdPulau'], 'required'],
             [['IdPulau'], 'integer'],
             [['NamaPropinsi'], 'string', 'max' => 200],
-            [['IdPulau'], 'exist', 'skipOnError' => true, 'targetClass' => TrefPulau::className(), 'targetAttribute' => ['IdPulau' => 'IdPulau']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -50,45 +43,5 @@ class TrefPropinsi extends \yii\db\ActiveRecord
             'NamaPropinsi' => 'Nama Propinsi',
             'IdPulau' => 'Id Pulau',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstAlamatPegawai()
-    {
-        return $this->hasMany(TmstAlamatPegawai::className(), ['KodePropinsiTempatTinggal' => 'IdPropinsi']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstPegawai()
-    {
-        return $this->hasMany(TmstPegawai::className(), ['PropinsiTempatLahir' => 'IdPropinsi']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTmstSatker()
-    {
-        return $this->hasMany(TmstSatker::className(), ['IdPropinsiSatker' => 'IdPropinsi']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTrefKabupaten()
-    {
-        return $this->hasMany(TrefKabupaten::className(), ['IdPropinsi' => 'IdPropinsi']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPulau()
-    {
-        return $this->hasOne(TrefPulau::className(), ['IdPulau' => 'IdPulau']);
     }
 }

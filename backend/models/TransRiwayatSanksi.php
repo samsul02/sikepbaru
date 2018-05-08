@@ -42,11 +42,12 @@ use Yii;
  * @property TmstPegawai $pegawai
  * @property TrefHukumanDisiplin $jenisHukumanDisiplin
  * @property TrefStatusProsesBawas $statusProsesBawas
+ * @property TrefHukumanDisiplin $jenisHukumanDisiplinBanding
  */
 class TransRiwayatSanksi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -54,26 +55,26 @@ class TransRiwayatSanksi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['IdPegawai', 'StatusProsesBawas', 'SanksiText', 'AlasanSanksi', 'TMTMulaiHukuman', 'TMTAkhirHukuman', 'NomorSKSanksi', 'TanggalSKSanksi', 'PejabatPembuatSKSanksi', 'DokumenSKSanksi', 'KeteranganMasalah', 'PenangananHukuman', 'PenangananAdministrasiHukuman', 'StatusHukumanSelesai', 'NoDokumenBAP', 'TglDokumenBAP', 'DokumenBAP'], 'required'],
+            [['IdPegawai', 'StatusProsesBawas', 'SanksiText', 'AlasanSanksi', 'TMTMulaiHukuman', 'TMTAkhirHukuman', 'NomorSKSanksi', 'TanggalSKSanksi', 'PejabatPembuatSKSanksi', 'DokumenSKSanksi', 'NoDokumenBAP', 'TglDokumenBAP', 'DokumenBAP'], 'required'],
             [['IdPegawai', 'StatusProsesBawas', 'IdJenisHukumanDisiplin', 'IdJenisHukumanDisiplinBanding'], 'integer'],
-            [['AlasanSanksi', 'AlasanSanksiBanding'], 'string'],
+            [['AlasanSanksi', 'StatusHukumanSelesai', 'AlasanSanksiBanding'], 'string'],
             [['TMTMulaiHukuman', 'TMTAkhirHukuman', 'TanggalSKSanksi', 'TglDokumenBAP', 'TglDokumenIjinTugas', 'TMTMulaiHukumanBanding', 'TMTAkhirHukumanBanding', 'TglSKHasilBanding'], 'safe'],
             [['SanksiText', 'NomorSKSanksi', 'DokumenSKSanksi', 'KeteranganMasalah', 'PenangananHukuman', 'PenangananAdministrasiHukuman', 'NoDokumenBAP', 'DokumenBAP', 'NoDokumenIjinTugas', 'DokumenIjinTugas', 'SanksiTextBanding', 'NoSKHasilBanding', 'DokumenSKHasilBanding'], 'string', 'max' => 100],
             [['PejabatPembuatSKSanksi', 'PejabatPembuatSKHasilBanding'], 'string', 'max' => 50],
-            [['StatusHukumanSelesai'], 'string', 'max' => 1],
             [['IdPegawai'], 'exist', 'skipOnError' => true, 'targetClass' => TmstPegawai::className(), 'targetAttribute' => ['IdPegawai' => 'IdPegawai']],
             [['IdJenisHukumanDisiplin'], 'exist', 'skipOnError' => true, 'targetClass' => TrefHukumanDisiplin::className(), 'targetAttribute' => ['IdJenisHukumanDisiplin' => 'IdHukumanDisiplin']],
             [['StatusProsesBawas'], 'exist', 'skipOnError' => true, 'targetClass' => TrefStatusProsesBawas::className(), 'targetAttribute' => ['StatusProsesBawas' => 'IdProsesBawas']],
+            [['IdJenisHukumanDisiplinBanding'], 'exist', 'skipOnError' => true, 'targetClass' => TrefHukumanDisiplin::className(), 'targetAttribute' => ['IdJenisHukumanDisiplinBanding' => 'IdHukumanDisiplin']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -134,5 +135,13 @@ class TransRiwayatSanksi extends \yii\db\ActiveRecord
     public function getStatusProsesBawas()
     {
         return $this->hasOne(TrefStatusProsesBawas::className(), ['IdProsesBawas' => 'StatusProsesBawas']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJenisHukumanDisiplinBanding()
+    {
+        return $this->hasOne(TrefHukumanDisiplin::className(), ['IdHukumanDisiplin' => 'IdJenisHukumanDisiplinBanding']);
     }
 }

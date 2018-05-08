@@ -13,24 +13,21 @@ use Yii;
  * @property string $KodeSatker
  * @property int $IdKlasPengadilan
  * @property int $IdBandingLingkunganPeradilan
- * @property int $IdJenisSatker
  * @property string $NamaSatker
  * @property int $MinimalJumlahHakim
  * @property int $MaksimalJumlahHakim
  * @property int $MinimalJumlahPanitera
  * @property int $MaksimalJumlahPanitera
  * @property string $AlamatSatker
+ * @property int $IdPulau
  * @property int $IdPropinsiSatker
  * @property int $IdKabupatenSatker
- * @property int $IdPulauSatker
  * @property string $WebsiteSatker
  * @property string $TeleponSatker
  *
  * @property TrefLingkunganPeradilan $bandingLingkunganPeradilan
- * @property TrefKabupaten $kabupatenSatker
  * @property TrefKlasPengadilan $klasPengadilan
- * @property TrefPropinsi $propinsiSatker
- * @property TrefPulau $pulauSatker
+ * @property TmstStrukturOrganisasi[] $tmstStrukturOrganisasi
  * @property TransBudgetingUnit[] $transBudgetingUnit
  * @property TransFormasiPegawaiDetail[] $transFormasiPegawaiDetail
  * @property TransForum[] $transForum
@@ -57,7 +54,7 @@ use Yii;
 class TmstSatker extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -65,27 +62,24 @@ class TmstSatker extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['ParentIdSatker', 'LevelSatker', 'IdKlasPengadilan', 'IdBandingLingkunganPeradilan', 'IdJenisSatker', 'MinimalJumlahHakim', 'MaksimalJumlahHakim', 'MinimalJumlahPanitera', 'MaksimalJumlahPanitera', 'IdPropinsiSatker', 'IdKabupatenSatker', 'IdPulauSatker'], 'integer'],
+            [['ParentIdSatker', 'LevelSatker', 'IdKlasPengadilan', 'IdBandingLingkunganPeradilan', 'MinimalJumlahHakim', 'MaksimalJumlahHakim', 'MinimalJumlahPanitera', 'MaksimalJumlahPanitera', 'IdPulau', 'IdPropinsiSatker', 'IdKabupatenSatker'], 'integer'],
             [['KodeSatker', 'NamaSatker'], 'required'],
             [['KodeSatker'], 'string', 'max' => 8],
             [['NamaSatker', 'AlamatSatker'], 'string', 'max' => 100],
             [['WebsiteSatker'], 'string', 'max' => 50],
             [['TeleponSatker'], 'string', 'max' => 15],
             [['IdBandingLingkunganPeradilan'], 'exist', 'skipOnError' => true, 'targetClass' => TrefLingkunganPeradilan::className(), 'targetAttribute' => ['IdBandingLingkunganPeradilan' => 'IdLingkunganPeradilan']],
-            [['IdKabupatenSatker'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKabupaten::className(), 'targetAttribute' => ['IdKabupatenSatker' => 'IdKabupaten']],
             [['IdKlasPengadilan'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKlasPengadilan::className(), 'targetAttribute' => ['IdKlasPengadilan' => 'IdKlasPengadilan']],
-            [['IdPropinsiSatker'], 'exist', 'skipOnError' => true, 'targetClass' => TrefPropinsi::className(), 'targetAttribute' => ['IdPropinsiSatker' => 'IdPropinsi']],
-            [['IdPulauSatker'], 'exist', 'skipOnError' => true, 'targetClass' => TrefPulau::className(), 'targetAttribute' => ['IdPulauSatker' => 'IdPulau']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -96,16 +90,15 @@ class TmstSatker extends \yii\db\ActiveRecord
             'KodeSatker' => 'Kode Satker',
             'IdKlasPengadilan' => 'Id Klas Pengadilan',
             'IdBandingLingkunganPeradilan' => 'Id Banding Lingkungan Peradilan',
-            'IdJenisSatker' => 'Id Jenis Satker',
             'NamaSatker' => 'Nama Satker',
             'MinimalJumlahHakim' => 'Minimal Jumlah Hakim',
             'MaksimalJumlahHakim' => 'Maksimal Jumlah Hakim',
             'MinimalJumlahPanitera' => 'Minimal Jumlah Panitera',
             'MaksimalJumlahPanitera' => 'Maksimal Jumlah Panitera',
             'AlamatSatker' => 'Alamat Satker',
+            'IdPulau' => 'Id Pulau',
             'IdPropinsiSatker' => 'Id Propinsi Satker',
             'IdKabupatenSatker' => 'Id Kabupaten Satker',
-            'IdPulauSatker' => 'Id Pulau Satker',
             'WebsiteSatker' => 'Website Satker',
             'TeleponSatker' => 'Telepon Satker',
         ];
@@ -122,14 +115,6 @@ class TmstSatker extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getKabupatenSatker()
-    {
-        return $this->hasOne(TrefKabupaten::className(), ['IdKabupaten' => 'IdKabupatenSatker']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getKlasPengadilan()
     {
         return $this->hasOne(TrefKlasPengadilan::className(), ['IdKlasPengadilan' => 'IdKlasPengadilan']);
@@ -138,17 +123,9 @@ class TmstSatker extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPropinsiSatker()
+    public function getTmstStrukturOrganisasi()
     {
-        return $this->hasOne(TrefPropinsi::className(), ['IdPropinsi' => 'IdPropinsiSatker']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPulauSatker()
-    {
-        return $this->hasOne(TrefPulau::className(), ['IdPulau' => 'IdPulauSatker']);
+        return $this->hasMany(TmstStrukturOrganisasi::className(), ['IdSatker' => 'IdSatker']);
     }
 
     /**

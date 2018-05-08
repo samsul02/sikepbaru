@@ -26,7 +26,7 @@ use Yii;
 class TransRiwayatOrganisasi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -34,7 +34,7 @@ class TransRiwayatOrganisasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -52,7 +52,7 @@ class TransRiwayatOrganisasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

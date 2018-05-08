@@ -17,7 +17,7 @@ use Yii;
 class TrefSeminarJenisPembiayaan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -25,7 +25,7 @@ class TrefSeminarJenisPembiayaan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -37,7 +37,7 @@ class TrefSeminarJenisPembiayaan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

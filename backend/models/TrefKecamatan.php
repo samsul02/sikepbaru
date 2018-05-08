@@ -11,12 +11,12 @@ use Yii;
  * @property string $NamaKecamatan
  * @property int $IdKabupaten
  *
- * @property TmstAlamatPegawai[] $tmstAlamatPegawai
+ * @property TrefKabupaten $kabupaten
  */
 class TrefKecamatan extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,7 +24,7 @@ class TrefKecamatan extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -32,11 +32,12 @@ class TrefKecamatan extends \yii\db\ActiveRecord
             [['NamaKecamatan', 'IdKabupaten'], 'required'],
             [['IdKabupaten'], 'integer'],
             [['NamaKecamatan'], 'string', 'max' => 50],
+            [['IdKabupaten'], 'exist', 'skipOnError' => true, 'targetClass' => TrefKabupaten::className(), 'targetAttribute' => ['IdKabupaten' => 'IdKabupaten']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -50,8 +51,8 @@ class TrefKecamatan extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTmstAlamatPegawai()
+    public function getKabupaten()
     {
-        return $this->hasMany(TmstAlamatPegawai::className(), ['KodeKecamatan' => 'IdKecamatan']);
+        return $this->hasOne(TrefKabupaten::className(), ['IdKabupaten' => 'IdKabupaten']);
     }
 }

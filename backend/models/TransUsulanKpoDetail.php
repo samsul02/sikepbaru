@@ -38,7 +38,7 @@ use Yii;
 class TransUsulanKpoDetail extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -46,7 +46,7 @@ class TransUsulanKpoDetail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -69,7 +69,7 @@ class TransUsulanKpoDetail extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

@@ -60,7 +60,6 @@ namespace backend\models;
  * @property string $CabangRekeningPegawai
  * @property string $NamaRekeningPegawai
  * @property string $FingerprintPegawai
- *
  * @property TmstAlamatPegawai[] $tmstAlamatPegawai
  * @property TmstKartuPegawai[] $tmstKartuPegawai
  * @property TmstKeluarga[] $tmstKeluarga
@@ -72,10 +71,7 @@ namespace backend\models;
  * @property TrefBank $kodeBankPegawai
  * @property TrefStatusPerkawinan $statusPerkawinan
  * @property TrefJenisPegawai $jenisPegawai
- * @property TrefStatusPegawai $statusPegawai
  * @property TrefAgama $agama
- * @property TrefKabupaten $kabupatenTempatLahir
- * @property TrefPropinsi $propinsiTempatLahir
  * @property TrefGolonganDarah $golonganDarah
  * @property TrefRambut $rambut
  * @property TmstUser[] $tmstUser
@@ -132,9 +128,7 @@ namespace backend\models;
  * @property TransUsulanKgbDetail[] $transUsulanKgbDetail0
  * @property TransUsulanKpDetail[] $transUsulanKpDetail
  * @property TransUsulanKpoDetail[] $transUsulanKpoDetail
- * @property TransUsulanPakJabatanFungsional[] $transUsulanPakJabatanFungsional
  * @property TransUsulanPemberianSatyaLencana[] $transUsulanPemberianSatyaLencana
- * @property TransUsulanPensiun[] $transUsulanPensiun
  * @property TransUsulanPensiunDetail[] $transUsulanPensiunDetail
  * @property TransUsulanPensiunDetail[] $transUsulanPensiunDetail0
  * @property TransUsulanPromosiMutasi[] $transUsulanPromosiMutasi
@@ -148,7 +142,7 @@ class TmstPegawai extends \yii\db\ActiveRecord {
     public $intIdPropinsi;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName() {
         return 'tmst_pegawai';
@@ -162,6 +156,7 @@ class TmstPegawai extends \yii\db\ActiveRecord {
             [['NIK', 'NamaLengkap', 'KodeGolonganRuang', 'StatusPerkawinan', 'JenisPegawai', 'StatusPegawai', 'TanggalLahir', 'KabupatenTempatLahir', 'PropinsiTempatLahir', 'MasaKerja'], 'required'],
             [['KodeGolonganRuang', 'StatusPerkawinan', 'JenisPegawai', 'StatusPegawai', 'Agama', 'KabupatenTempatLahir', 'PropinsiTempatLahir', 'GolonganDarah', 'TinggiBadan', 'BeratBadan', 'Rambut', 'WarnaKulit', 'BentukMuka', 'IdSukuBangsa', 'IdJabatan', 'KodeBankPegawai'], 'integer'],
             [['intIdPropinsi', 'fileFotoPegawai', 'fileAktaPegawai', 'TanggalLahir'], 'safe'],
+            [['TanggalLahir'], 'safe'],
             [['JenisKelamin', 'FingerprintPegawai'], 'string'],
             [['NIPLama', 'NIPBaru', 'NIK', 'NomorHandphone', 'NomorTelepon'], 'string', 'max' => 20],
             [['NamaLengkap', 'EmailPegawai', 'CiriKhusus', 'CacatTubuh', 'DokumenAktaLahir', 'KegemaranHobi', 'MasaKerja'], 'string', 'max' => 100],
@@ -187,7 +182,7 @@ class TmstPegawai extends \yii\db\ActiveRecord {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels() {
         return [
