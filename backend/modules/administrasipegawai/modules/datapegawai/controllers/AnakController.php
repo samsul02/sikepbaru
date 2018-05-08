@@ -18,7 +18,6 @@ use yii\web\UploadedFile;
 /**
  * note:
  * CONTROLLER :
- * - tambahkan global variabel -> public $layout = 'main';
  * - pada actionIndex, actionCreate, actionUpdate, actionView assign parameter $this->view->params['modelPegawai']
  * - pada actionCreate assign manual $model->IDPegawai = $idPegawai; dan hapus form fieldnya _form.php
  * 
@@ -48,8 +47,20 @@ class AnakController extends Controller {
      * @return mixed
      */
     public function actionIndex($idPegawai) {
+        /*
+         * 12 : anak angkat
+         * 13 : anak kandung
+         * 14 : anak tiri
+         */
+        $JenisHubunganKeluarga = [12, 13, 14];
+        $conditions = [
+            'and',
+            ['IDPegawai' => $idPegawai,],
+            ['in', 'JenisHubunganKeluarga', $JenisHubunganKeluarga]
+        ];
+
         $searchModel = new TmstKeluargaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $conditions);
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
@@ -133,7 +144,7 @@ class AnakController extends Controller {
             if (!empty($imgAktaAnak)) {
                 $model->DokumenHubunganKeluarga = SikepHelper::uploadFile($imgAktaAnak, Yii::$app->params['prefixFileAktaAnak'] . $model->IdAnggotaKeluarga, '@uploadAktaAnakpath');
             }
-			$imgFotoAnak = UploadedFile::getInstance($model, 'fileFotoAnak');
+            $imgFotoAnak = UploadedFile::getInstance($model, 'fileFotoAnak');
             if (!empty($imgFotoAnak)) {
                 $model->FotoAnggotaKeluarga = SikepHelper::uploadFile($imgFotoAnak, Yii::$app->params['prefixFileFotoAnak'] . $model->IdAnggotaKeluarga, '@uploadFotoAnakpath');
             }

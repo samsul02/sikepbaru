@@ -10,13 +10,12 @@ use backend\models\TmstKeluarga;
 /**
  * TmstKeluargaSearch represents the model behind the search form of `backend\models\TmstKeluarga`.
  */
-class TmstKeluargaSearch extends TmstKeluarga
-{
+class TmstKeluargaSearch extends TmstKeluarga {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['IdAnggotaKeluarga', 'IDPegawai', 'JenisHubunganKeluarga', 'PekerjaanAnggotaKeluarga', 'NoIndukPegawaiKeluarga', 'Agama', 'StatusPerkawinan', 'PendidikanTerakhir'], 'integer'],
             [['JenisKelamin', 'NamaAnggotaKeluarga', 'TempatLahirAnggotaKeluarga', 'TanggalLahirAnggotaKeluarga', 'AlamatKantorAnggotaKeluarga', 'TanggalNikah', 'StatusKesehatan', 'IsHidup', 'BerhakTunjangan', 'DokumenHubunganKeluarga', 'NomorKARIS_KARSU', 'FotoAnggotaKeluarga'], 'safe'],
@@ -26,10 +25,13 @@ class TmstKeluargaSearch extends TmstKeluarga
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
+    }
+
+    public function findWhere() {
+        $query = TmstKeluarga::find();
     }
 
     /**
@@ -39,11 +41,13 @@ class TmstKeluargaSearch extends TmstKeluarga
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params, $conditions = []) {
         $query = TmstKeluarga::find();
 
         // add conditions that should always apply here
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -72,16 +76,17 @@ class TmstKeluargaSearch extends TmstKeluarga
         ]);
 
         $query->andFilterWhere(['like', 'JenisKelamin', $this->JenisKelamin])
-            ->andFilterWhere(['like', 'NamaAnggotaKeluarga', $this->NamaAnggotaKeluarga])
-            ->andFilterWhere(['like', 'TempatLahirAnggotaKeluarga', $this->TempatLahirAnggotaKeluarga])
-            ->andFilterWhere(['like', 'AlamatKantorAnggotaKeluarga', $this->AlamatKantorAnggotaKeluarga])
-            ->andFilterWhere(['like', 'StatusKesehatan', $this->StatusKesehatan])
-            ->andFilterWhere(['like', 'IsHidup', $this->IsHidup])
-            ->andFilterWhere(['like', 'BerhakTunjangan', $this->BerhakTunjangan])
-            ->andFilterWhere(['like', 'DokumenHubunganKeluarga', $this->DokumenHubunganKeluarga])
-            ->andFilterWhere(['like', 'NomorKARIS_KARSU', $this->NomorKARIS_KARSU])
-            ->andFilterWhere(['like', 'FotoAnggotaKeluarga', $this->FotoAnggotaKeluarga]);
+                ->andFilterWhere(['like', 'NamaAnggotaKeluarga', $this->NamaAnggotaKeluarga])
+                ->andFilterWhere(['like', 'TempatLahirAnggotaKeluarga', $this->TempatLahirAnggotaKeluarga])
+                ->andFilterWhere(['like', 'AlamatKantorAnggotaKeluarga', $this->AlamatKantorAnggotaKeluarga])
+                ->andFilterWhere(['like', 'StatusKesehatan', $this->StatusKesehatan])
+                ->andFilterWhere(['like', 'IsHidup', $this->IsHidup])
+                ->andFilterWhere(['like', 'BerhakTunjangan', $this->BerhakTunjangan])
+                ->andFilterWhere(['like', 'DokumenHubunganKeluarga', $this->DokumenHubunganKeluarga])
+                ->andFilterWhere(['like', 'NomorKARIS_KARSU', $this->NomorKARIS_KARSU])
+                ->andFilterWhere(['like', 'FotoAnggotaKeluarga', $this->FotoAnggotaKeluarga]);
 
         return $dataProvider;
     }
+
 }

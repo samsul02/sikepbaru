@@ -5,7 +5,6 @@ use backend\components\widget\GridView;
 use backend\components\widget\ProfileHeader;
 use kartik\detail\DetailView;
 use yii\jui\DatePicker;
-	
 
 $this->title = 'Anak';
 $this->params['breadcrumbs'][] = ['label' => 'Administrasi Pegawai', 'url' => ['/administrasipegawai/default']];
@@ -16,8 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= ProfileHeader::widget($profileParams) ?>
 
-
-
 <div class="tmst-keluarga-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -26,8 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Tambah Anak', ['create?idPegawai=' . $idPegawai], ['class' => 'btn btn-success']) ?>
     </p>
 
-	
-	
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -40,14 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
             //'JenisHubunganKeluarga',
             //'JenisKelamin',
             'NamaAnggotaKeluarga',
-			//[
-			//	'attribute'=>'NamaAnggotaKeluarga',
-			//	'label'=>'Nama Anggota Keluarga'
-			//],
+            //[
+            //	'attribute'=>'NamaAnggotaKeluarga',
+            //	'label'=>'Nama Anggota Keluarga'
+            //],
             'TempatLahirAnggotaKeluarga',
-            
-			
-			[
+            [
                 'attribute' => 'TanggalLahirAnggotaKeluarga',
                 'value' => function ($model) {
                     $tanggal = "-";
