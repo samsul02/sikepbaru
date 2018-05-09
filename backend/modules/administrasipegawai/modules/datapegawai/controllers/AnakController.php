@@ -11,20 +11,24 @@ use yii\web\NotFoundHttpException;
 use backend\models\TmstKeluarga;
 use backend\models\TmstKeluargaSearch;
 use backend\models\TmstPegawai;
-use backend\models\TrefHubunganKeluarga;
 use backend\components\SikepHelper;
 use yii\web\UploadedFile;
 
 /**
  * note:
  * CONTROLLER :
- * - pada actionIndex, actionCreate, actionUpdate, actionView assign parameter $this->view->params['modelPegawai']
- * - pada actionCreate assign manual $model->IDPegawai = $idPegawai; dan hapus form fieldnya _form.php
+ * - pada actionIndex, actionCreate, actionUpdate, actionView harus lempar parameter
+ *   idPegawai dan profileParams untuk menampilkan header profil pegawai
+ * - di viewnya, echo ProfileHeader untuk nampilin header tsb
+ * - tombol create di page index kasih parameter ['create?idPegawai=' . $idPegawai]
+ * - pada actionCreate assign manual $model->IDPegawai = $idPegawai; dan hapus form fieldnya di _form.php
+ *   
  * 
  * VIEW :
- * - index.php tombol create tambah parameter idPegawai
- * - ganti use yii\grid\GridView; dengan use kartik\grid\GridView; cek contoh option widgetnya di view/default/index
- * - ganti use yii\widgets\DetailView; dengan use kartik\detail\DetailView;
+ * - DatePicker gunakan : use backend\components\widget\DatePicker;
+ * - DropdownSearch gunakan : use backend\components\widget\DropdownSearch;
+ * - FileInput gunakan : use backend\components\widget\FileInput;
+ *
  */
 class AnakController extends Controller {
 

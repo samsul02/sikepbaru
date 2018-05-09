@@ -5,6 +5,7 @@ namespace backend\components;
 use yii;
 use yii\helpers\Url;
 use kartik\grid\GridView;
+use kartik\file\FileInput;
 
 class SikepHelper {
 
@@ -40,7 +41,7 @@ class SikepHelper {
      * @return boolean the status of deletion
      */
     public function deleteFile($imgName, $alias) {
-        $path = isset($imgName) ? (self::getAlias($alias) . '/' . $imgName) : null;
+        $path = isset($imgName) ? (Yii::getAlias($alias) . '/' . $imgName) : null;
 
         // check if file exists on server
         if (empty($path) || !file_exists($path)) {

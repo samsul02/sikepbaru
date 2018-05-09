@@ -170,7 +170,7 @@ class PegawaiController extends Controller {
      * @param type $zipId
      */
     public function actionGetPropinsi($idKabupaten) {
-        echo Json::encode(TrefKabupaten::findOne($idKabupaten)->propinsi);
+        echo Json::encode(TrefKabupaten::findOne($idKabupaten)->IdPropinsi);
     }
 
     /**
